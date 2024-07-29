@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import static com.application.app.utils.Constants.*;
 @RequestMapping(value = "/permissions")
 public class PermissionController {
 
+    //@Autowired
     private final PermissionService permissionService;
 
     public PermissionController(PermissionService permissionService) {

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.*;
@@ -20,15 +21,19 @@ import java.util.*;
 import static com.application.app.utils.Constants.USER_NOT_FOUND_MESSAGE;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
+    //@Autowired
     private final UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptEncoder;
 
-    public UserServiceImpl(UserRepository userRepository){
+    public UserServiceImpl(UserRepository userRepository/*, BCryptPasswordEncoder bCryptEncoder*/){
+
         this.userRepository = userRepository;
+        //this.bCryptEncoder = bCryptEncoder;
     }
 
     @Override

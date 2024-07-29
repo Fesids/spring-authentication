@@ -9,9 +9,11 @@ import com.application.app.models.entities.user.UserAccount;
 import com.application.app.repositories.UserAccountRepository;
 import com.application.app.services.interfaces.UserAccountService;
 import com.application.app.services.interfaces.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -19,8 +21,10 @@ import static com.application.app.utils.Constants.INVALID_TOKEN_MESSAGE;
 import static com.application.app.utils.Constants.RESOURCE_NOT_FOUND_MESSAGE;
 
 @Service(value = "UserAccountService")
+@Transactional
 public class UserAccountServiceImpl implements UserAccountService {
 
+    //@Autowired
     private final UserAccountRepository userAccountRepository;
 
     public UserAccountServiceImpl(UserAccountRepository userAccountRepository){

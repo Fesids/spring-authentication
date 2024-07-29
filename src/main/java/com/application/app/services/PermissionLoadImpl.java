@@ -12,10 +12,12 @@ import net.bytebuddy.description.method.MethodDescription;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.apache.bcel.util.ClassPath;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,15 +31,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class PermissionLoadImpl implements PermissionLoader {
 
     private final Log logger = LogFactory.getLog(this.getClass());
 
-    @Value("${app.permission.load.mode")
+    @Value("${app.permission.load.mode}")
     private PermissionLoadMode loadMode;
 
+    //@Autowired
     private final RoleRepository roleRepository;
 
+    //@Autowired
     private final PermissionRepository permissionRepository;
 
     public PermissionLoadImpl(RoleRepository roleRepository, PermissionRepository permissionRepository) {

@@ -23,6 +23,7 @@ import io.swagger.annotations.ApiResponses;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,18 +47,25 @@ public class AuthController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final UserService userService;
+    //@Autowired
+    private UserService userService;
 
+    //@Autowired
     private final RoleService roleService;
 
+    //@Autowired
     private final AuthenticationManager authenticationManager;
 
+    //@Autowired
     private final JwtUtilToken jwtTokenUtil;
 
+    //@Autowired
     private final RefreshTokenRepository refreshTokenRepository;
 
+    //@Autowired
     private final ApplicationEventPublisher eventPublisher;
 
+    //@Autowired
     private final UserAccountService userAccountService;
 
     public AuthController(

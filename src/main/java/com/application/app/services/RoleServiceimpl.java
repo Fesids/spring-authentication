@@ -5,7 +5,9 @@ import com.application.app.models.dtos.CreateRoleDto;
 import com.application.app.models.entities.auth.Role;
 import com.application.app.repositories.RoleRepository;
 import com.application.app.services.interfaces.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
@@ -15,8 +17,10 @@ import java.util.Optional;
 import static com.application.app.utils.Constants.ROLE_NOT_FOUND_MESSAGE;
 
 @Service(value = "roleService")
+@Transactional
 public class RoleServiceimpl implements RoleService {
 
+   // @Autowired
     private final RoleRepository roleRepository;
 
     public RoleServiceimpl(RoleRepository roleRepository){

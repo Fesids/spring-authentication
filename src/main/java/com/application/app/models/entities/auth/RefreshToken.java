@@ -1,9 +1,7 @@
 package com.application.app.models.entities.auth;
 
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.redis.core.RedisHash;
 
@@ -12,9 +10,16 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 @Setter
 @Getter
+
+@Data
+@Entity
+@Table(name = "refreshTokens")
 public class RefreshToken {
 
+    /*@Id
+    private Long id;*/
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String value;

@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +32,13 @@ import static com.application.app.utils.Constants.*;
 @RequestMapping("/auth")
 public class ResetPasswordController {
 
-    private final UserService userService;
+    //@Autowired
+    private UserService userService;
 
+    //@Autowired
     private final ApplicationEventPublisher eventPublisher;
 
+    //@Autowired
     private final UserAccountService userAccountService;
 
     public ResetPasswordController(

@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Configuration
+//@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 

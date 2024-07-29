@@ -7,16 +7,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Accessors(chain = true)
 @Getter
 @Setter
-public abstract class BaseModel {
+public abstract class BaseModel implements Serializable {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     protected Date createdAt;
 

@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiResponses;
 import jakarta.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -38,8 +39,10 @@ public class UserController {
 
     private final Log logger = LogFactory.getLog(this.getClass());
 
+    //@Autowired
     private final UserService userService;
 
+    //@Autowired
     private final PermissionService permissionService;
 
     public UserController(UserService userService, PermissionService permissionService){

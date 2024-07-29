@@ -1,10 +1,11 @@
 package com.application.app.models.entities.auth;
 
 import com.application.app.models.entities.BaseModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.util.HashSet;
@@ -17,8 +18,14 @@ import java.util.stream.Stream;
 @Accessors(chain = true)
 @Data
 @Entity
+@Getter
+@Setter
 @Table(name = "roles")
 public class Role extends BaseModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -26,6 +33,11 @@ public class Role extends BaseModel {
 
     private boolean isDefault;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_permissions",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<Permission> permissions;
 
     public Role(){permissions = new HashSet<>();}
@@ -40,6 +52,7 @@ public class Role extends BaseModel {
         Optional<Permission> permissionItem = this.permissions.stream()
                 .filter(permission -> permission.getName().equals(permissionName))
                 .findFirst();
+
         return permissionItem.isPresent();
     }
 
@@ -49,7 +62,8 @@ public class Role extends BaseModel {
 
         this.permissions = newPermissions.collect(Collectors.toSet());
 
-        return this;
+
+        return this ;
     }
 
 
