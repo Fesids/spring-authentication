@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisHash;
 @AllArgsConstructor
 @Setter
 @Getter
-
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "refreshTokens")

@@ -73,9 +73,6 @@ public class TokenController {
         } catch (ExpiredJwtException e) {
             logger.warn(JWT_EXPIRED_MESSAGE, e);
             result.put(MESSAGE_KEY, JWT_EXPIRED_MESSAGE);
-        } catch (SignatureException e) {
-            logger.error(JWT_SIGNATURE_MESSAGE);
-            result.put(MESSAGE_KEY, JWT_SIGNATURE_MESSAGE);
         }
 
         if(username != null) {

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static com.application.app.utils.Constants.USER_NOT_FOUND_MESSAGE;
@@ -47,11 +48,15 @@ public class UserServiceImpl implements UserService {
                 .setPassword(bCryptEncoder.encode(createUserDto.getPassword()))
                 .setSetor(createUserDto.getSetor())
                 .setActive(createUserDto.isActive())
-                .setConfirmed(createUserDto.isConfirmed())
+                //.setConfirmed(createUserDto.isConfirmed())
                 .setEnabled(createUserDto.isEnabled())
                 .setSetor(createUserDto.getSetor())
                 .setOccupation(createUserDto.getOccupation())
-                .setRole(createUserDto.getRole());
+                .setRole(createUserDto.getRole())
+                .setCreatedAt(LocalDateTime.now())
+                .setUpdatedAt(LocalDateTime.now());
+
+
         return userRepository.save(newUser);
     }
 

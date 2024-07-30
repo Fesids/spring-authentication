@@ -1,5 +1,6 @@
 package com.application.app.utils;
-
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import com.application.app.models.entities.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
@@ -63,7 +65,8 @@ public class JwtUtilToken implements Serializable {
         return Jwts.builder()
                 .setSubject(username)
                 .claim(AUTHORITIES_KEY, "")
-                .signWith(SignatureAlgorithm.HS256, jwtSecretKey)
+                .signWith(getKey(), SignatureAlgorithm.HS256)
+                //.signWith(SignatureAlgorithm.HS256, jwtSecretKey)
                 .setIssuedAt(new Date(currentTimestampInMillis))
                 .setExpiration(new Date(currentTimestampInMillis + (TOKEN_LIFETIME_SECONDS * 1000)))
                 .compact();
@@ -73,6 +76,12 @@ public class JwtUtilToken implements Serializable {
         final String username = getUsernameFromToken(token);
 
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    private Key getKey(){
+
+        byte[] keyBytes = Decoders.BASE64URL.decode(jwtSecretKey);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
 }

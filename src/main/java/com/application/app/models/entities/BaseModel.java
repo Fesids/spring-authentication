@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Accessors(chain = true)
@@ -20,8 +21,8 @@ public abstract class BaseModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;*/
 
-    protected Date createdAt;
+    protected LocalDateTime createdAt;
 
-    protected Date updatedAt;
+    protected LocalDateTime updatedAt;
 
 }

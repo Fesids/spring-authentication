@@ -39,7 +39,7 @@ public class ResetPasswordController {
     private final ApplicationEventPublisher eventPublisher;
 
     //@Autowired
-    private final UserAccountService userAccountService;
+    private final UserAccountService    userAccountService;
 
     public ResetPasswordController(
         UserService userService,

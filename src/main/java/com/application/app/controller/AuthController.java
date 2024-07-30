@@ -102,6 +102,11 @@ public class AuthController {
 
             User user = userService.save(createUserDto);
 
+
+            String accountToken = Helpers.generateRandomString(25);
+
+            this.userAccountService.save(user, accountToken);
+
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user));
 
             return ResponseEntity.ok(user);
